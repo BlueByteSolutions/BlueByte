@@ -17,3 +17,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - [Toplogies/Visuals](groupdocumentation/topologies-visuals)
 - [Standard Operating Procedures (SOPs)](groupdocumentation/sops)
 
+## Presentation
+- [BlueByte Solutions Live Presentation]()
+- [BlueByte Solutions Slide Deck]()
+
