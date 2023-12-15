@@ -21,3 +21,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - [BlueByte Solutions Live Presentation]()
 - [BlueByte Solutions Slide Deck]()
 
+## Resources
+- [Project Management Tool]()
+- 
+
