@@ -14,5 +14,6 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 ## Group Documentation
 - [Team Agreement](groupdocumentation/ops-301d14-group1-teamagreement.pdf)
 - [System Selection](groupdocumentation/ops-301d14-group1-systemselection.pdf)
-- [Standard Operating Procedures (SOPs)]()
 - [Toplogies/Visuals]()
+- [Standard Operating Procedures (SOPs)]()
+
