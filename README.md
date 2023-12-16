@@ -9,7 +9,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - Marcus Noguiera [LinkedIn](https://www.linkedin.com/in/marcusvno) [Github](https://github.com/marcusvno)
 - Krystal Reid [LinkedIn](https://www.linkedin.com/in/krystalbsreid/) [Github](https://github.com/thechaoskrys)
 - Michael Roberts [LinkedIn](https://www.linkedin.com/in/michael-roberts33/) [Github](https://github.com/Mjroberts7)
-- Michael Sineiro [LinkedIn]() [Github](https://github.com/KrustyKode)
+- Michael Sineiro [LinkedIn](https://www.linkedin.com/in/michael-sineiro-4784b517b/) [Github](https://github.com/KrustyKode)
 
 ## Group Documentation
 - [Team Agreement](groupdocumentation/ops-301d14-group1-teamagreement.pdf)
