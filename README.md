@@ -12,8 +12,8 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - Michael Sineiro [LinkedIn](https://www.linkedin.com/in/michael-sineiro-4784b517b/) [Github](https://github.com/KrustyKode)
 
 ## Group Documentation
-- [Team Agreement](groupdocumentation/ops-301d14-group1-teamagreement.pdf)
-- [System Selection](groupdocumentation/ops-301d14-group1-systemselection.pdf)
+- [Team Agreement](groupdocumentation/teamagreement.pdf)
+- [System Selection](groupdocumentation/systemselection.pdf)
 - [Toplogies/Visuals](groupdocumentation/topologies-visuals)
 - [Standard Operating Procedures (SOPs)](groupdocumentation/sops)
 
