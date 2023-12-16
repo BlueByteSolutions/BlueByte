@@ -1,3 +1,6 @@
+![image](https://github.com/BlueByteSolutions/BlueByte/assets/147365506/731fcbed-cbd6-416c-93e1-66f462511cee)
+
+
 # BlueByte Solutions
 
 BlueByte Solutions is an organization brought together by Code Fellows, tasked with assisting a growing technology company with network expansion and enhancing data security. They need assistance supporting their expanding workforce, which currently consists of 20 employees that work in different departments, including Research and Development, Sales and Marketing, and IT Management.
