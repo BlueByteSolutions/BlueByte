@@ -8,7 +8,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - Dominique Bruso [LinkedIn]() [Github](https://github.com/nbruno)
 - Marcus Noguiera [LinkedIn]() [Github](https://github.com/marcusvno)
 - Krystal Reid [LinkedIn](https://www.linkedin.com/in/krystalbsreid/) [Github](https://github.com/thechaoskrys)
-- Michael Roberts [LinkedIn](www.linkedin.com/in/michael-roberts33) [Github](https://github.com/Mjroberts7)
+- Michael Roberts [LinkedIn](www.linkedin.com/in/michael-roberts33/) [Github](https://github.com/Mjroberts7)
 - Micahel Sineiro [LinkedIn]() [Github](https://github.com/KrustyKode)
 
 ## Group Documentation
