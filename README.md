@@ -5,7 +5,7 @@ BlueByte Solutions is an organization brought together by Code Fellows, tasked w
 The CEO of the company would like us to place an emphasis on a secure but efficient network that enables seamless communication between their office and home company's central server. Additionally, the company would liek to implement meausres to safeguard data, improve collaboration through file shares, and ensure bsuiness continuity with backup solutions, and establish IT support policies. 
 
 ## Group Members
-- Dominique Bruso [LinkedIn]() [Github](https://github.com/nbruno)
+- Dominique Bruso [LinkedIn](https://www.linkedin.com/in/dominique-bruso-7005b827a/) [Github](https://github.com/nbruno)
 - Marcus Noguiera [LinkedIn]() [Github](https://github.com/marcusvno)
 - Krystal Reid [LinkedIn](https://www.linkedin.com/in/krystalbsreid/) [Github](https://github.com/thechaoskrys)
 - Michael Roberts [LinkedIn](www.linkedin.com/in/michael-roberts33/) [Github](https://github.com/Mjroberts7)
