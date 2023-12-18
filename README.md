@@ -14,15 +14,15 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - Michael Roberts [LinkedIn](https://www.linkedin.com/in/michael-roberts33/) [Github](https://github.com/Mjroberts7)
 - Michael Sineiro [LinkedIn](https://www.linkedin.com/in/michael-sineiro-4784b517b/) [Github](https://github.com/KrustyKode)
 
-## Project Documentation
+## Project Documentation :green_book:
 - [Team Agreement](project-docs/teamagreement.pdf)
 - [System Selection](project-docs/systemselection.pdf)
 - [Toplogies/Visuals](topologies-images/)
 - [Standard Operating Procedures (SOPs)](SOPs/)
 
-## Presentation
+## Presentation :cinema:
 - [BlueByte Solutions Live Presentation]()
 - [BlueByte Solutions Slide Deck]()
 
-## Resources
-- [Project Management Tool](https://github.com/users/thechaoskrys/projects/2)
+## Project Management
+- [Project Tracking & Planning Tool](https://github.com/users/thechaoskrys/projects/2)
