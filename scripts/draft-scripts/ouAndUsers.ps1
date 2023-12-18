@@ -1,10 +1,43 @@
-# Create Organizational Units (OUs)
-New-ADOrganizationalUnit -Name "Sales" -Path "DC=YourDomainName,DC=com"
-New-ADOrganizationalUnit -Name "Marketing" -Path "DC=YourDomainName,DC=com"
+# Function to create an Organizational Unit
+function Create-OU {
+    param (
+        [string]$OUName
+    )
 
-# Create Users
-$ouPath = "OU=Sales,DC=YourDomainName,DC=com"
-New-ADUser -SamAccountName "User1" -UserPrincipalName "User1@YourDomainName.com" -Name "User1" -GivenName "User" -Surname "One" -Enabled $true -Path $ouPath -AccountPassword (ConvertTo-SecureString -AsPlainText "User1Password" -Force) -PassThru
+    # Construct the LDAP path for the new OU
+    $OUPath = "OU=$OUName,DC=yourdomain,DC=com" # Update with your actual domain information
 
-$ouPath = "OU=Marketing,DC=YourDomainName,DC=com"
-New-ADUser -SamAccountName "User2" -UserPrincipalName "User2@YourDomainName.com" -Name "User2" -GivenName "User" -Surname "Two" -Enabled $true -Path $ouPath -AccountPassword (ConvertTo-SecureString -AsPlainText "User2Password" -Force) -PassThru
+    # Create the new OU
+    New-ADOrganizationalUnit -Name $OUName -Path "OU=YourParentOU,DC=yourdomain,DC=com" -Description "Description for $OUName"
+}
+
+# Function to create a User
+function Create-User {
+    param (
+        [string]$Username,
+        [string]$Password,
+        [string]$Description
+    )
+
+    # Construct the LDAP path for the new user
+    $UserPath = "OU=YourOU,DC=yourdomain,DC=com" # Update with the OU path where you want to create the user
+
+    # Create the new user
+    New-ADUser -SamAccountName $Username -UserPrincipalName "$Username@yourdomain.com" -Name $Username -GivenName $Username -Surname "User" -Description $Description -AccountPassword (ConvertTo-SecureString -AsPlainText $Password -Force) -Enabled $true -Path $UserPath
+}
+
+# Main script
+
+# Prompt for OU name
+$OUName = Read-Host "Enter the name of the Organizational Unit (OU)"
+
+# Create the OU
+Create-OU -OUName $OUName
+
+# Prompt for User details
+$Username = Read-Host "Enter the username"
+$Password = Read-Host -AsSecureString "Enter the password"
+$Description = Read-Host "Enter the user description"
+
+# Create the User
+Create-User -Username $Username -Password $Password -Description $Description
