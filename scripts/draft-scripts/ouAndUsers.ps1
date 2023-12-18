@@ -1,4 +1,5 @@
-Install-Module -Name ActiveDirectory -Force -Scope CurrentUser
+Add-WindowsFeature RSAT-AD-PowerShell
+
 Set-ExecutionPolicy RemoteSigned
 
 
