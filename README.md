@@ -9,7 +9,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 
 ## Group Members
 - Dominique Bruso [LinkedIn](https://www.linkedin.com/in/dominique-bruso-7005b827a/) [Github](https://github.com/nbruno)
-- Marcus Nogueira [![Github](https://i.ibb.co/WtmHqPv/github-mark-dark-mode.png#gh-dark-mode-only)](https://github.com/marcusvno)  [![Linkedin](https://i.stack.imgur.com/gVE0j.png)](https://www.linkedin.com/in/marcusvno) [![Github](https://i.ibb.co/Gcp2RPq/github-mark-light-mode.png#gh-light-mode-only)](https://github.com/marcusvno)
+- Marcus Nogueira [![Linkedin](https://i.stack.imgur.com/gVE0j.png)](https://www.linkedin.com/in/marcusvno) [![Github](https://i.ibb.co/zF2mC6M/Untitled.png)](https://github.com/marcusvno)
 - Krystal Reid [LinkedIn](https://www.linkedin.com/in/krystalbsreid/) [Github](https://github.com/thechaoskrys)
 - Michael Roberts [LinkedIn](https://www.linkedin.com/in/michael-roberts33/) [Github](https://github.com/Mjroberts7)
 - Michael Sineiro [LinkedIn](https://www.linkedin.com/in/michael-sineiro-4784b517b/) [Github](https://github.com/KrustyKode)
