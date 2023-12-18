@@ -17,7 +17,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 ## Project Documentation
 - [Team Agreement](project-docs/teamagreement.pdf)
 - [System Selection](project-docs/systemselection.pdf)
-- [Toplogies/Visuals](topologies-visuals/)
+- [Toplogies/Visuals](topologies-images/)
 - [Standard Operating Procedures (SOPs)](SOPs/)
 
 ## Presentation
