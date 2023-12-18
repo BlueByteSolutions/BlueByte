@@ -1,3 +1,7 @@
+Install-Module -Name ActiveDirectory -Force -Scope CurrentUser
+Set-ExecutionPolicy RemoteSigned
+
+
 # Function to create an Organizational Unit
 function Create-OU {
     param (
