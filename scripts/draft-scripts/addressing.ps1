@@ -1,38 +1,43 @@
-# Ask for user input for IP address
-$new_ip_address = Read-Host "Enter the new IP address for the server: "
+# Prompt for user input
+$newIPAddress = Read-Host "Enter the new static IP address (e.g., 192.168.1.10): "
+$newDNSServer = Read-Host "Enter the primary DNS server IP address (e.g., 8.8.8.8): "
+$newServerName = Read-Host "Enter the new server name (e.g., MyServer): "
 
-# Ask for subnet mask
-$subnet_mask = Read-Host "Enter the subnet mask for the server: "
-
-# Ask for default gateway
-$default_gateway = Read-Host "Enter the default gateway for the server: "
-
-# Ask for DNS server addresses (comma-separated)
-$dns_servers_string = Read-Host "Enter the DNS server addresses (comma-separated): "
-
-# Convert comma-separated string to array of server addresses
-$dns_servers = ($dns_servers_string -split ",") -replace '\s+',''
-
-# Get the network adapter
+# Get active network adapter
 $adapter = Get-NetAdapter | Where-Object { $_.Status -eq "Up" } | Select-Object -First 1
 
-# Set the static IP address
-Set-NetIPAddress -IPAddress $new_ip_address -SubnetMask $subnet_mask -InterfaceIndex $adapter.InterfaceIndex -DefaultGateway $default_gateway
+# Check if adapter found
+if (!$adapter) {
+    Write-Error "No active network adapter found!"
+    exit
+}
 
-# Set the DNS server addresses
-Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $dns_servers
+# Get current configuration
+$currentAdapterConfig = Get-NetIPConfiguration -InterfaceIndex $adapter.InterfaceIndex
 
-# Rename the server
-Rename-Computer -NewName $new_server_name
+# Disable DHCP
+Set-NetIPAddress -IPAddress $currentAdapterConfig.IPv4Addresses[0].IPAddress -InterfaceIndex $adapter.InterfaceIndex -AddressFamily IPv4 -UnAssign
 
-# Restart the ServerManager service for the changes to take effect
-Restart-Service ServerManager
+# Set static IP and subnet mask
+Set-NetIPAddress -IPAddress $newIPAddress -InterfaceIndex $adapter.InterfaceIndex -AddressFamily IPv4 -PrefixLength 24
 
-# Test the network connectivity
-Ping -n 5 $default_gateway
-Ping -n 5 $dns_servers
+# Set default gateway
+Set-NetRoute -InterfaceIndex $adapter.InterfaceIndex -DestinationPrefix 0.0.0.0 -NextHop $currentAdapterConfig.IPv4DefaultGateway
 
-Write-Host "Server network configuration and name changed successfully!"
+# Set primary DNS server
+Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $newDNSServer
 
+# Rename server
+Rename-Computer $newServerName
 
+# Restart network adapter to apply changes
+Restart-NetAdapter $adapter.Name
+
+Write-Host "The server has been successfully configured with:"
+Write-Host "  - IP address: $newIPAddress"
+Write-Host "  - DNS server: $newDNSServer"
+Write-Host "  - Server name: $newServerName"
+
+# Optionally, restart the server for complete name change
+# Restart-Computer -Force
 
