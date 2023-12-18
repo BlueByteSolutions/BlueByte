@@ -1,43 +1,24 @@
-# Prompt for user input
-$newIPAddress = Read-Host "Enter the new static IP address (e.g., 192.168.1.10): "
-$newDNSServer = Read-Host "Enter the primary DNS server IP address (e.g., 8.8.8.8): "
-$newServerName = Read-Host "Enter the new server name (e.g., MyServer): "
+# Prompt user for static IPv4 address, subnet mask, and default gateway
+$ipv4Address = Read-Host "Enter the static IPv4 address"
+$subnetMask = Read-Host "Enter the subnet mask"
+$defaultGateway = Read-Host "Enter the default gateway"
 
-# Get active network adapter
-$adapter = Get-NetAdapter | Where-Object { $_.Status -eq "Up" } | Select-Object -First 1
+# Set the static IPv4 address
+$networkInterface = Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }
+$ipv4Configuration = $networkInterface | Get-NetIPInterface -AddressFamily IPv4
+$ipv4Configuration | Set-NetIPInterface -Dhcp Enabled:$false
+$networkInterface | New-NetIPAddress -IPAddress $ipv4Address -PrefixLength $subnetMask -DefaultGateway $defaultGateway
 
-# Check if adapter found
-if (!$adapter) {
-    Write-Error "No active network adapter found!"
-    exit
-}
+# Prompt user for DNS server
+$dnsServer = Read-Host "Enter the DNS server address"
 
-# Get current configuration
-$currentAdapterConfig = Get-NetIPConfiguration -InterfaceIndex $adapter.InterfaceIndex
+# Set DNS server
+Set-DnsClientServerAddress -InterfaceAlias $networkInterface.Name -ServerAddresses $dnsServer
 
-# Disable DHCP
-Set-NetIPAddress -IPAddress $currentAdapterConfig.IPv4Addresses[0].IPAddress -InterfaceIndex $adapter.InterfaceIndex -AddressFamily IPv4 -UnAssign
+# Prompt user for new server name
+$newServerName = Read-Host "Enter the new server name"
 
-# Set static IP and subnet mask
-Set-NetIPAddress -IPAddress $newIPAddress -InterfaceIndex $adapter.InterfaceIndex -AddressFamily IPv4 -PrefixLength 24
+# Rename the server
+Rename-Computer -NewName $newServerName -Force -Restart
 
-# Set default gateway
-Set-NetRoute -InterfaceIndex $adapter.InterfaceIndex -DestinationPrefix 0.0.0.0 -NextHop $currentAdapterConfig.IPv4DefaultGateway
-
-# Set primary DNS server
-Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $newDNSServer
-
-# Rename server
-Rename-Computer $newServerName
-
-# Restart network adapter to apply changes
-Restart-NetAdapter $adapter.Name
-
-Write-Host "The server has been successfully configured with:"
-Write-Host "  - IP address: $newIPAddress"
-Write-Host "  - DNS server: $newDNSServer"
-Write-Host "  - Server name: $newServerName"
-
-# Optionally, restart the server for complete name change
-# Restart-Computer -Force
-
+Write-Host "Configuration completed. The server will now restart with the new settings."
