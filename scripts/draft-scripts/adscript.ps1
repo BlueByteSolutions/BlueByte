@@ -1,42 +1,21 @@
-# Import the Active Directory module
-Import-Module ActiveDirectory
+# Install Active Directory Domain Services
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
-# Prompt user for domain name
-$domainName = Read-Host "Enter the domain name (e.g., contoso.local):" -ValidatePattern "^[a-z0-9-]+\.[a-z0-9]+$"
+# Promote to Domain Controller and create a new forest
+Install-ADDSForest `
+    -DomainName "YourDomainName.com" `
+    -DomainMode Win2012R2 `
+    -ForestMode Win2012R2 `
+    -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText "YourPassword" -Force) `
+    -Force:$true
 
-# Prompt user for number of OUs
-$ouCount = Read-Host "Enter the number of OUs you want to create:" -ValidateRange 1 999
+# Create Organizational Units (OUs)
+New-ADOrganizationalUnit -Name "Sales" -Path "DC=YourDomainName,DC=com"
+New-ADOrganizationalUnit -Name "Marketing" -Path "DC=YourDomainName,DC=com"
 
-# Loop to create OUs based on user input
-for ($i = 1; $i -le $ouCount; $i++) {
-  # Prompt user for individual OU name
-  $ouName = Read-Host "Enter the name of OU #$i"
+# Create Users
+$ouPath = "OU=Sales,DC=YourDomainName,DC=com"
+New-ADUser -SamAccountName "User1" -UserPrincipalName "User1@YourDomainName.com" -Name "User1" -GivenName "User" -Surname "One" -Enabled $true -Path $ouPath -AccountPassword (ConvertTo-SecureString -AsPlainText "User1Password" -Force) -PassThru
 
-  # Create the OU with user-provided name
-  New-ADOrganizationalUnit -Name $ouName -Path "DC1:\$domainName"
-
-  # Write confirmation message
-  Write-Host "OU '$ouName' created successfully!"
-
-  # Prompt user for number of users within the current OU
-  $userCount = Read-Host "Enter the number of users to create in OU '$ouName' (0 to skip):" -ValidateRange 0 999
-
-  # Loop to create users based on user input
-  for ($j = 1; $j -le $userCount; $j++) {
-    # Prompt user for individual user details
-    $userFirstName = Read-Host "Enter first name for user #$j in OU '$ouName':"
-    $userLastName = Read-Host "Enter last name for user #$j in OU '$ouName':"
-    $userName = Read-Host "Enter username for user #$j in OU '$ouName':"
-
-    # Generate a random secure password
-    $userPassword = ConvertTo-SecureString -AsPlainText -Force (New-Object System.Management.Automation.SecureString -constructor ([System.Security.SecureString], 'P@ssw0rd$!$23'))
-
-    # Create the user in the specified OU
-    New-ADUser -Name "$userFirstName $userLastName" -SamAccountName $userName -Password $userPassword -Enabled $true -OUPath "DC1:\$domainName\$ouName"
-
-    # Write confirmation message with generated password
-    Write-Host "User '$userFirstName $userLastName' created in OU '$ouName'. Password: $userPassword"
-  }
-}
-
-Write-Host "All Organizational Units and Users created in domain '$domainName'!"
+$ouPath = "OU=Marketing,DC=YourDomainName,DC=com"
+New-ADUser -SamAccountName "User2" -UserPrincipalName "User2@YourDomainName.com" -Name "User2" -GivenName "User" -Surname "Two" -Enabled $true -Path $ouPath -AccountPassword (ConvertTo-SecureString -AsPlainText "User2Password" -Force) -PassThru
