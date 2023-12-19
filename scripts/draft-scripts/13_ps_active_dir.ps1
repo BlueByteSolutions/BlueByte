@@ -24,9 +24,9 @@ do {
     $email = Get-Input -prompt "ENTER EMAIL"
 
     # Check for the OU based on the Department
-    $OUPath = "OU=$department,DC=corp,DC=globexpower,DC=com"
+    $OUPath = "OU=$department,DC=corp,DC=BlueByte,DC=com"
     if (-not (Get-ADOrganizationalUnit -Filter "Name -eq '$department'" -ErrorAction SilentlyContinue)) {
-        New-ADOrganizationalUnit -Name $department -Path "DC=corp,DC=globexpower,DC=com"
+        New-ADOrganizationalUnit -Name $department -Path "DC=corp,DC=BlueByte,DC=com"
     }
 
     # User creation
