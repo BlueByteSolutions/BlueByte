@@ -8,7 +8,8 @@ function Create-OU {
     )
 
     try {
-        New-ADOrganizationalUnit -Name $ouName -Path "OU=Users,DC=corp,DC=BlueByte,DC=com" -ErrorAction Stop
+        # Create the specified Organizational Unit
+        New-ADOrganizationalUnit -Name $ouName -Path "DC=corp,DC=BlueByte,DC=com" -ErrorAction Stop
         Write-Host "Organizational Unit '$ouName' created successfully." -ForegroundColor Green
     } catch {
         Write-Host "Error creating Organizational Unit: $_" -ForegroundColor Red
@@ -18,28 +19,29 @@ function Create-OU {
 # Function to create a User
 function Create-User {
     param (
-        [string]$firstName,
-        [string]$lastName,
-        [string]$userName,
+        [string]$ouName,
+        [string[]]$userNames,
         [string]$password
     )
 
     try {
-        $userParams = @{
-            SamAccountName  = $userName
-            GivenName       = $firstName
-            Surname         = $lastName
-            UserPrincipalName = "$userName@corp.BlueByte.com"
-            Name            = "$firstName $lastName"
-            DisplayName     = "$firstName $lastName"
-            Enabled         = $true
-            Path            = "OU=Users,DC=corp,DC=BlueByte,DC=com"
-            AccountPassword = (ConvertTo-SecureString -AsPlainText $password -Force)
-            ChangePasswordAtLogon = $true
-        }
+        foreach ($userName in $userNames) {
+            $userParams = @{
+                SamAccountName  = $userName
+                GivenName       = $userName
+                Surname         = "LastName"
+                UserPrincipalName = "$userName@corp.BlueByte.com"
+                Name            = "$userName LastName"
+                DisplayName     = "$userName LastName"
+                Enabled         = $true
+                Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
+                AccountPassword = (ConvertTo-SecureString -AsPlainText $password -Force)
+                ChangePasswordAtLogon = $true
+            }
 
-        New-ADUser @userParams -ErrorAction Stop
-        Write-Host "User '$userName' created successfully." -ForegroundColor Green
+            New-ADUser @userParams -ErrorAction Stop
+            Write-Host "User '$userName' created successfully." -ForegroundColor Green
+        }
     } catch {
         Write-Host "Error creating user: $_" -ForegroundColor Red
     }
@@ -49,11 +51,13 @@ function Create-User {
 $ouName = Read-Host "Enter the name of the Organizational Unit"
 
 # Get user input for User
-$firstName = Read-Host "Enter the first name of the user"
-$lastName = Read-Host "Enter the last name of the user"
-$userName = Read-Host "Enter the username for the user"
-$password = Read-Host "Enter the password for the user" -AsSecureString
+$userCount = Read-Host "Enter the number of users to create"
+$userNames = @()
+for ($i = 1; $i -le $userCount; $i++) {
+    $userNames += Read-Host "Enter the username for user $i"
+}
+$password = Read-Host "Enter the password for the users" -AsSecureString
 
-# Call functions to create OU and User
+# Call functions to create OU and Users
 Create-OU -ouName $ouName
-Create-User -firstName $firstName -lastName $lastName -userName $userName -password $password
+Create-User -ouName $ouName -userNames $userNames -password $password
