@@ -1,34 +1,17 @@
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 
-########################################################
-# Name: BackupScript_v2.ps1                              
-# Creator: Michael Seidl aka Techguy                    
-# CreationDate: 05.08.2021                              
-# LastModified: 05.08.2021                              
-# Version: 2.1
-# Doc: http://www.techguy.at/tag/backupscript/
-# GitHub: https://github.com/Seidlm/PowerShell-Backup-Script
-# PSVersion tested: 5
-#
-# PowerShell Self Service Web Portal at www.au2mator.com/PowerShell
-#
-#
+# Script Name:                  addressing.ps1
+# Author:                       Michael Sineiro
+# Date of latest revision:      12/18/2023
+# Purpose:                     set static ip, dns, gateway and server name.
+## orginal script              https://github.com/Seidlm/PowerShell-Backup-Script
+
 # Description: Copies the Bakupdirs to the Destination
 # You can configure more than one Backupdirs, every Dir
 # wil be copied to the Destination.
 # Only Change Variables in Variables Section
 # Change LoggingLevel to 3 an get more output in Powershell Windows
-#
-#
-########################################################
-#
-# www.techguy.at                                        
-# www.facebook.com/TechguyAT                            
-# www.twitter.com/TechguyAT                            
-# michael@techguy.at
-#
-#
-########################################################
+
 
 
 #Variables, only Change here
