@@ -3,6 +3,7 @@
 # Date of latest revision:      12/18/2023
 # Purpose:                     creates new domain and forest
 
+Add-WindowsFeature RSAT-AD-PowerShell
 # Prompt the user for input
 $domainName = Read-Host -Prompt "Enter the domain name"
 $netBIOSName = Read-Host -Prompt "Enter the NetBIOS name"
