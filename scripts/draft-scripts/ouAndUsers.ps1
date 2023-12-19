@@ -50,7 +50,7 @@ function Create-User {
 # Get user input for Organizational Unit
 $ouName = Read-Host "Enter the name of the Organizational Unit"
 
-# Get user input for User
+# Get user input for Users
 $userCount = Read-Host "Enter the number of users to create"
 $userNames = @()
 for ($i = 1; $i -le $userCount; $i++) {
