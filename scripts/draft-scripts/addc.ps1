@@ -1,13 +1,19 @@
+# Define variables
+$domainAdminUsername = "Administrator"
+$domainAdminPassword = "YourPassword"
+$domainName = "YourDomain.local"
+$domainNetBIOSName = "YourDomain"
+$domainAdminPasswordSecure = ConvertTo-SecureString $domainAdminPassword -AsPlainText -Force
 
-Add-WindowsFeature RSAT-AD-PowerShell
-
-# Install Active Directory Domain Services
+# Install AD DS role
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
-# Promote to Domain Controller and create a new forest
-Install-ADDSForest `
-    -DomainName "YourDomainName.com" `
-    -DomainMode Win2012R2 `
-    -ForestMode Win2012R2 `
-    -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText "YourPassword" -Force) `
-    -Force:$true
+# Promote to domain controller
+Install-ADDSDomainController -NoGlobalCatalog:$false `
+    -CreateDnsDelegation:$false -CriticalReplicationOnly:$false -DatabasePath "C:\Windows\NTDS" `
+    -DomainName $domainName -InstallDns:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false `
+    -SiteName "Default-First-Site-Name" -SysvolPath "C:\Windows\SYSVOL" -Force:$true `
+    -Credential (New-Object System.Management.Automation.PSCredential ($domainAdminUsername, $domainAdminPasswordSecure))
+
+# Restart the server
+Restart-Computer -Force
