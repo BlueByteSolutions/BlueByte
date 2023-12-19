@@ -23,10 +23,10 @@ $EmailParameters = @{
 }
 $FormattingParameters = @{
     CompanyBranding        = @{
-        Logo   = 'https://evotec.xyz/wp-content/uploads/2015/05/Logo-evotec-012.png'
+        Logo   = 'c:\Users\Mike\OneDrive\Desktop\bluebyte.png'
         Width  = '200'
         Height = ''
-        Link   = 'https://evotec.xyz'
+        Link   = 'https://github.com/BlueByteSolutions/BlueByte'
         Inline = $false
     }
     FontFamily             = 'Calibri Light'
