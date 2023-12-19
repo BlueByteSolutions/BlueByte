@@ -20,28 +20,28 @@ function Create-OU {
 function Create-User {
     param (
         [string]$ouName,
-        [string[]]$userNames,
+        [string]$firstName,
+        [string]$lastName,
+        [string]$userName,
         [string]$password
     )
 
     try {
-        foreach ($userName in $userNames) {
-            $userParams = @{
-                SamAccountName  = $userName
-                GivenName       = $userName
-                Surname         = "LastName"
-                UserPrincipalName = "$userName@corp.BlueByte.com"
-                Name            = "$userName LastName"
-                DisplayName     = "$userName LastName"
-                Enabled         = $true
-                Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
-                AccountPassword = (ConvertTo-SecureString -AsPlainText $password -Force)
-                ChangePasswordAtLogon = $true
-            }
-
-            New-ADUser @userParams -ErrorAction Stop
-            Write-Host "User '$userName' created successfully." -ForegroundColor Green
+        $userParams = @{
+            SamAccountName  = $userName
+            GivenName       = $firstName
+            Surname         = $lastName
+            UserPrincipalName = "$userName@corp.BlueByte.com"
+            Name            = "$firstName $lastName"
+            DisplayName     = "$firstName $lastName"
+            Enabled         = $true
+            Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
+            AccountPassword = (ConvertTo-SecureString -AsPlainText $password -Force)
+            ChangePasswordAtLogon = $true
         }
+
+        New-ADUser @userParams -ErrorAction Stop
+        Write-Host "User '$userName' created successfully." -ForegroundColor Green
     } catch {
         Write-Host "Error creating user: $_" -ForegroundColor Red
     }
@@ -52,12 +52,23 @@ $ouName = Read-Host "Enter the name of the Organizational Unit"
 
 # Get user input for Users
 $userCount = Read-Host "Enter the number of users to create"
-$userNames = @()
+$users = @()
 for ($i = 1; $i -le $userCount; $i++) {
-    $userNames += Read-Host "Enter the username for user $i"
+    $firstName = Read-Host "Enter the first name for user $i"
+    $lastName = Read-Host "Enter the last name for user $i"
+    $userName = Read-Host "Enter the username for user $i"
+    $password = Read-Host "Enter the password for user $i" -AsSecureString
+
+    $users += [PSCustomObject]@{
+        FirstName = $firstName
+        LastName = $lastName
+        UserName = $userName
+        Password = $password
+    }
 }
-$password = Read-Host "Enter the password for the users" -AsSecureString
 
 # Call functions to create OU and Users
 Create-OU -ouName $ouName
-Create-User -ouName $ouName -userNames $userNames -password $password
+foreach ($user in $users) {
+    Create-User -ouName $ouName -firstName $user.FirstName -lastName $user.LastName -userName $user.UserName -password $user.Password
+}
