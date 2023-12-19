@@ -1,3 +1,9 @@
+# Script Name:                  addressing.ps1
+# Author:                       Michael Sineiro
+# Date of latest revision:      12/18/2023
+# Purpose:                     set static ip, dns, gateway and server name.
+
+
 # Prompt for static IPv4 Address
 $ipv4Address = Read-Host "Enter the static IPv4 address (e.g., 192.168.1.100)"
 
