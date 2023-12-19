@@ -25,4 +25,4 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - [BlueByte Solutions Slide Deck]()
 
 ## Project Management
-- [Project Tracking & Planning Tool](https://github.com/users/thechaoskrys/projects/2)
+- [Project Tracking & Planning Tool](https://github.com/orgs/BlueByteSolutions/projects/1)
