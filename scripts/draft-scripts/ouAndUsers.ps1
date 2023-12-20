@@ -1,7 +1,7 @@
 # Script Name:                  addressing.ps1
 # Author:                       Michael Sineiro
 # Date of latest revision:      12/18/2023
-# Purpose:                      creates new ou's and fills them w/ specified users.
+# Purpose:                      creates new ou's and fills them w/ inputed names and users.
 
 # Import the Active Directory module
 Import-Module ActiveDirectory
