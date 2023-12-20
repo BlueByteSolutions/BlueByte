@@ -1,47 +1,54 @@
-Purpose:
-The purpose of this IT Onboarding Policy is to establish standardized procedures for the onboarding of new employees in the company's IT environment. The policy aims to streamline the process of account creation, device setup, network access, and security training, ensuring a smooth integration of new personnel into the organization.
+# Standard Operating Procedure: New Employee Onboarding 
 
-Scope:
-This policy applies to all new employees joining the company and covers the entire onboarding process within the IT infrastructure. It includes but is not limited to account provisioning, device configuration, network access, and security awareness training.
+## Purpose:
+- This document’s purpose is to outline the process and responsibilities of configuring a new employee’s computer and email.
 
-Responsibilities:
+## Scope:
+- This SOP applies to all employees undergoing the onboarding process within the organization that requires a computer that is well-configured for work-related purposes.
 
-The HR department is responsible for initiating the onboarding process by providing necessary information about new hires.
-The IT department is responsible for creating user accounts, configuring devices, granting network access, and conducting security training.
-Department managers are responsible for communicating specific IT requirements for their new team members.
-Prerequisites:
-Before initiating the IT onboarding process, HR must provide complete and accurate information about the new employee, including their role, department, and specific IT needs. The IT department should ensure that all required hardware, software, and training materials are available.
+## Responsibilities:
+IT Department 
+  - Responsible for procuring the required hardware and software, setting up email accounts and ensuring proper configuration to software, and providing basic training on technology uses and security protocols.
 
-Procedures:
+HR Department
+  - Responsible for collecting and verifying the information of a new employee, and requesting the configuration of new accounts by the IT department.
 
-Account Creation:
+Managers/Supervisors
+  - Responsible for supporting new employees in adapting to technology work flows.
 
-HR submits the onboarding request to IT with necessary employee details.
-IT creates user accounts for email, network, and relevant applications.
-Account credentials are securely shared with the new employee.
-Device Setup:
+## Prerequisites:
+- Ensure the necessary hardware and software has been procured.
+- The new employee has been informed about the company IT policies and procedures.
 
-IT configures workstations, laptops, and mobile devices based on the employee's role.
-Standardized software applications are installed.
-Devices are tested to ensure proper functionality.
-Network Access:
+## Procedures:
+Overview: Ensuring new employees have the necessary equipment and email configuration required for daily tasks and communication. 
 
-IT provides network access based on the employee's department and role.
-VPN access is configured for remote employees.
-Access permissions are regularly reviewed and updated as needed.
-Security Training:
+Preparation:
+ - HR Department should prove the IT department with all required information for onboarding.
+    - Full name of new employee
+    - Employee's position/title
+    - Department
+    - Start date 
+    - Email requirements (shared emails, levels of access)
 
-New employees undergo mandatory security awareness training.
-IT conducts sessions on best practices, data protection, and company-specific security policies.
-Employees are required to acknowledge their understanding and compliance with security policies.
-References:
+Computer Setup:
+  - Create a non-administrator profile for new employees.
+  - Allow RDP access for employees that need to be able to remotely access computers while traveling.
 
-Relevant company policies (e.g., Acceptable Use Policy, Security Policy).
-Industry best practices for IT onboarding and security awareness training.
-Definitions:
+Email Setup:
+  - Set up the account:
+    - On both Linux and Windows, create an [Outlook](outlook.com) email address.
+    - Download the email client [Thunderbird](https://www.thunderbird.net/en-US/download/?downloaded=True&download_channel=esr).
+    - To set up an existing email address, input the appropriate name, email and password.
+    - Select the most appropriate configuration (IMAP recommended), and complete the setup by selecting 'Done'. 
+   
+  - Email Signature Setup:
+    - Assist the new employee in creating a professional email signature, including name, position, contact information, and any other relevant information.
+    - Conduct a brief test to ensure the new employee can send and receive emails.  
 
-HR: Human Resources department.
-IT: Information Technology department.
-Revision History:
+##  References: 
+- [ChatGPT](https://chat.openai.com/share/52ba4d5c-b97f-4dab-a2bf-c81ce844abda)
+- [Code Fellows Sample SOP - 201d14 Lab 09](https://codefellows.github.io/ops-201-guide/curriculum/class-09/lab/SOP-new-employee.html)
 
-
+## Revision History
+- Version 1.0 (2023.11.14): Initial document creation. Krystal Reid
