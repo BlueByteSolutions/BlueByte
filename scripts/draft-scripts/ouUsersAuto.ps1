@@ -26,7 +26,7 @@ function Create-User {
     )
 
     try {
-        $username = "$($firstName[0]).$lastName" -replace "[^\w\d]"
+        $username = "$($firstName[0].ToLower()).$lastName" -replace "[^\w\d]"
         $displayName = "$title $firstName $lastName" -replace "[^\w\d]"
         $password = ConvertTo-SecureString -String "Strongpass1" -AsPlainText -Force
 
