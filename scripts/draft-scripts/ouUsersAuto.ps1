@@ -22,21 +22,23 @@ function Create-User {
         [string]$ouName,
         [string]$firstName,
         [string]$lastName,
-        [string]$password
+        [string]$role
     )
 
     try {
-        $userName = ($firstName[0].ToUpper() + "." + $lastName).ToLower()
+        $userName = "$($firstName[0]).$lastName"
+        $password = "Strongpass1"
+
         $userParams = @{
-            SamAccountName    = $userName
-            GivenName         = $firstName
-            Surname           = $lastName
+            SamAccountName  = $userName
+            GivenName       = $firstName
+            Surname         = $lastName
             UserPrincipalName = "$userName@corp.BlueByte.com"
-            Name              = "$firstName $lastName"
-            DisplayName       = "$firstName $lastName"
-            Enabled           = $true
-            Path              = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
-            AccountPassword   = (ConvertTo-SecureString -AsPlainText $password -Force)
+            Name            = "$firstName $lastName"
+            DisplayName     = "$firstName $lastName"
+            Enabled         = $true
+            Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
+            AccountPassword = (ConvertTo-SecureString -AsPlainText $password -Force)
             ChangePasswordAtLogon = $true
         }
 
@@ -47,56 +49,44 @@ function Create-User {
     }
 }
 
-# Create Executive Team OUs and Users
-$executiveTeamOUs = @("CEO", "CFO", "CTO", "COO")
-foreach ($ou in $executiveTeamOUs) {
+# Define OUs and users
+$ouList = @(
+    "Executive Team",
+    "Sales Team",
+    "R&D",
+    "IT Management",
+    "HR"
+)
+
+$userList = @(
+    ("Martin", "Brody", "CEO"),
+    ("Larry", "Vaughn", "CFO"),
+    ("Matt", "Hooper", "CTO"),
+    ("Quint", "", "COO"),
+    ("Ellen", "Brody", "Sales Manager"),
+    ("Matt", "Hooper Jr.", "Marketing Specialist"),
+    ("Harry", "Meadows", "Account Executive"),
+    ("Chrissie", "Watkins", "Social Media Coordinator"),
+    ("Dr.", "Elkins", "R&D Manager"),
+    ("Mike", "Brody", "Software Engineer"),
+    ("Sean", "Brody", "Data Scientist"),
+    ("Tina", "Wilcox", "UX/UI Designer"),
+    ("Leonard", "Hendricks", "IT Director"),
+    ("Larry", "Vaughn Jr.", "Network Administrator"),
+    ("Carl", "Gottlieb", "Cybersecurity Specialist"),
+    ("Josh", "Mills", "System Administrator"),
+    ("Lorraine", "Kitner", "HR Manager"),
+    ("Sarah", "Thompson", "Recruitment Specialist"),
+    ("Robert", "Kintner", "Employee Relations Specialist"),
+    ("Amanda", "Mills", "Training Coordinator")
+)
+
+# Call functions to create OUs and Users
+foreach ($ou in $ouList) {
     Create-OU -ouName $ou
 }
 
-Create-User -ouName "CEO" -firstName "Martin" -lastName "Brody" -password "Jmartintemppass1"
-Create-User -ouName "CFO" -firstName "Larry" -lastName "Vaughn" -password "Lvaughntemppass1"
-Create-User -ouName "CTO" -firstName "Matt" -lastName "Hooper" -password "Mhoopertemppass1"
-Create-User -ouName "COO" -firstName "Quint" -lastName "" -password "Qquinttemppass1"
-
-# Create Sales Team OUs and Users
-$salesTeamOUs = @("SalesManager", "MarketingSpecialist", "AccountExecutive")
-foreach ($ou in $salesTeamOUs) {
-    Create-OU -ouName $ou
+for ($i = 0; $i -lt $userList.Count; $i++) {
+    $user = $userList[$i]
+    Create-User -ouName $ouList[$i] -firstName $user[0] -lastName $user[1] -role $user[2]
 }
-
-Create-User -ouName "SalesManager" -firstName "Ellen" -lastName "Brody" -password "Ebrodytemppass1"
-Create-User -ouName "MarketingSpecialist" -firstName "Matt" -lastName "HooperJr" -password "Mhooperjrtemppass1"
-Create-User -ouName "AccountExecutive" -firstName "Harry" -lastName "Meadows" -password "Hmeadowstemppass1"
-
-# Create R&D OUs and Users
-$rdOUs = @("RDManager", "SoftwareEngineer", "DataScientist", "UXUIDesigner")
-foreach ($ou in $rdOUs) {
-    Create-OU -ouName $ou
-}
-
-Create-User -ouName "RDManager" -firstName "Dr." -lastName "Elkins" -password "Delkinstemppass1"
-Create-User -ouName "SoftwareEngineer" -firstName "Mike" -lastName "Brody" -password "Mbrodytemppass1"
-Create-User -ouName "DataScientist" -firstName "Sean" -lastName "Brody" -password "Sbrodytemppass1"
-Create-User -ouName "UXUIDesigner" -firstName "Tina" -lastName "Wilcox" -password "Twilcoxtemppass1"
-
-# Create IT Management OUs and Users
-$itOUs = @("ITDirector", "NetworkAdministrator", "CybersecuritySpecialist", "SystemAdministrator")
-foreach ($ou in $itOUs) {
-    Create-OU -ouName $ou
-}
-
-Create-User -ouName "ITDirector" -firstName "Leonard" -lastName "Hendricks" -password "Lhendrickstemppass1"
-Create-User -ouName "NetworkAdministrator" -firstName "Larry" -lastName "VaughnJr" -password "Lvaughnjrtemppass1"
-Create-User -ouName "CybersecuritySpecialist" -firstName "Carl" -lastName "Gottlieb" -password "Cgottliebtemppass1"
-Create-User -ouName "SystemAdministrator" -firstName "Josh" -lastName "Mills" -password "Jmillsstemppass1"
-
-# Create HR Management OUs and Users
-$hrOUs = @("HRManager", "RecruitmentSpecialist", "EmployeeRelationsSpecialist", "TrainingCoordinator")
-foreach ($ou in $hrOUs) {
-    Create-OU -ouName $ou
-}
-
-Create-User -ouName "HRManager" -firstName "Lorraine" -lastName "Kitner" -password "Lkitnertemppass1"
-Create-User -ouName "RecruitmentSpecialist" -firstName "Sarah" -lastName "Thompson" -password "Sthompsontemppass1"
-Create-User -ouName "EmployeeRelationsSpecialist" -firstName "Robert" -lastName "Kintner" -password "Rkintnertemppass1"
-Create-User -ouName "TrainingCoordinator" -firstName "Amanda" -lastName "Mills" -password "Amillstemppass1"
