@@ -69,7 +69,7 @@ $userList = @(
     ("Account Executive", "Harry", "Meadows", "Sales Team"),
     ("Social Media Coordinator", "Chrissie", "Watkins", "Sales Team"),
     ("R&D Manager", "Drake", "Elkins", "R&D"),
-    ("Software Engineer", "Mike", "Brody", "R&D"),
+    ("Software Engineer", "Tim", "Brody", "R&D"),
     ("Data Scientist", "Sean", "Brody", "R&D"),
     ("UX/UI Designer", "Tina", "Wilcox", "R&D"),
     ("IT Director", "Leonard", "Hendricks", "IT"),
