@@ -3,6 +3,9 @@
 # Date of latest revision:      12/18/2023
 # Purpose:                      creates new ou's and fills them w/ predifined names and users
 
+
+
+Add-WindowsFeature RSAT-AD-PowerShell
 # Import the Active Directory module
 Import-Module ActiveDirectory
 
