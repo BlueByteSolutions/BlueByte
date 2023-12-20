@@ -23,9 +23,9 @@ $EmailParameters = @{
 }
 $FormattingParameters = @{
     CompanyBranding        = @{
-        Logo   = '/home/mikes/project301/BlueByte/scripts/draft-scripts/bluebyte.png'
+        Logo   = 'bluebyte.png'
         Width  = '200'
-        Height = ''
+        Height = '100'
         Link   = 'https://github.com/BlueByteSolutions/BlueByte'
         Inline = $false
     }
