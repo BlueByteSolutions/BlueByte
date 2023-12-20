@@ -26,19 +26,17 @@ function Create-User {
     )
 
     try {
-        $username = "$($firstName[0]).$lastName"
+        $username = "$($firstName[0]).$lastName" -replace "[^\w\d]"
+        $displayName = "$title $firstName $lastName" -replace "[^\w\d]"
         $password = ConvertTo-SecureString -String "Strongpass1" -AsPlainText -Force
-
-        # Replace colons with underscores in the title
-        $title = $title -replace ":", "_"
 
         $userParams = @{
             SamAccountName  = $username
             GivenName       = $firstName
             Surname         = $lastName
             UserPrincipalName = "$username@corp.BlueByte.com"
-            Name            = "$title $firstName $lastName"
-            DisplayName     = "$title $firstName $lastName"
+            Name            = $displayName
+            DisplayName     = $displayName
             Enabled         = $true
             Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
             AccountPassword = $password
