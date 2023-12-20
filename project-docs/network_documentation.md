@@ -71,7 +71,7 @@
 ### Phase 2 
 - ID 1
 - Mode: Tunnel
-- Local Subnet: SALESANDMARKETING(the first LAN interface on pfsense)
+- Network-Local Subnet: 172.16.0.0/16(subnets the vm's are using)
 - Remote Subnet: 10.0.0.0/16(AWS server)
 - P2 protocol: ESP
 - P2 transforms: AES (128 bits)
