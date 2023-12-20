@@ -29,12 +29,15 @@ function Create-User {
         $username = "$($firstName[0]).$lastName"
         $password = ConvertTo-SecureString -String "Strongpass1" -AsPlainText -Force
 
+        # Replace colons with underscores in the title
+        $title = $title -replace ":", "_"
+
         $userParams = @{
             SamAccountName  = $username
             GivenName       = $firstName
             Surname         = $lastName
             UserPrincipalName = "$username@corp.BlueByte.com"
-            Name            = "$firstName $lastName"
+            Name            = "$title $firstName $lastName"
             DisplayName     = "$title $firstName $lastName"
             Enabled         = $true
             Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
@@ -59,26 +62,26 @@ $ouList = @(
 )
 
 $userList = @(
-    ("CEO", "Martin", "Brody"),
-    ("CFO", "Larry", "Vaughn"),
-    ("CTO", "Matt", "Hooper"),
-    ("COO", "Quint", "William"),
-    ("Sales Manager", "Ellen", "Brody"),
-    ("Marketing Specialist", "Matt", "Hooper Jr."),
-    ("Account Executive", "Harry", "Meadows"),
-    ("Social Media Coordinator", "Chrissie", "Watkins"),
-    ("R&D Manager", "Drake", "Elkins"),
-    ("Software Engineer", "Mike", "Brody"),
-    ("Data Scientist", "Sean", "Brody"),
-    ("UX/UI Designer", "Tina", "Wilcox"),
-    ("IT Director", "Leonard", "Hendricks"),
-    ("Network Administrator", "Larry", "Vaughn Jr."),
-    ("Cybersecurity Specialist", "Carl", "Gottlieb"),
-    ("System Administrator", "Josh", "Mills"),
-    ("HR Manager", "Lorraine", "Kitner"),
-    ("Recruitment Specialist", "Sarah", "Thompson"),
-    ("Employee Relations Specialist", "Robert", "Kintner"),
-    ("Training Coordinator", "Amanda", "Mills")
+    ("CEO", "Martin", "Brody", "Executive Team"),
+    ("CFO", "Larry", "Vaughn", "Executive Team"),
+    ("CTO", "Matt", "Hooper", "Executive Team"),
+    ("COO", "Quint", "William", "Executive Team"),
+    ("Sales Manager", "Ellen", "Brody", "Sales Team"),
+    ("Marketing Specialist", "Matt", "Hooper Jr.", "Sales Team"),
+    ("Account Executive", "Harry", "Meadows", "Sales Team"),
+    ("Social Media Coordinator", "Chrissie", "Watkins", "Sales Team"),
+    ("R&D Manager", "Drake", "Elkins", "R&D"),
+    ("Software Engineer", "Mike", "Brody", "R&D"),
+    ("Data Scientist", "Sean", "Brody", "R&D"),
+    ("UX/UI Designer", "Tina", "Wilcox", "R&D"),
+    ("IT Director", "Leonard", "Hendricks", "IT"),
+    ("Network Administrator", "Larry", "Vaughn Jr.", "IT"),
+    ("Cybersecurity Specialist", "Carl", "Gottlieb", "IT"),
+    ("System Administrator", "Josh", "Mills", "IT"),
+    ("HR Manager", "Lorraine", "Kitner", "HR"),
+    ("Recruitment Specialist", "Sarah", "Thompson", "HR"),
+    ("Employee Relations Specialist", "Robert", "Kintner", "HR"),
+    ("Training Coordinator", "Amanda", "Mills", "HR")
 )
 
 # Create OUs
@@ -88,6 +91,6 @@ foreach ($ou in $ouList) {
 
 # Create Users
 foreach ($user in $userList) {
-    $ouName = $user[0].Split(' ')[-1]  # Extract department from the title
+    $ouName = $user[3]  # Use the provided OU name directly
     Create-User -ouName $ouName -firstName $user[1] -lastName $user[2] -title $user[0]
 }
