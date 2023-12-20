@@ -1,4 +1,4 @@
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+### -ExecutionPolicy Bypass -File "C:\Users\YourUsername\Desktop\backups.ps1"
 
 # Script Name:                  addressing.ps1
 # Author:                       Michael Sineiro
@@ -12,16 +12,29 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 # Only Change Variables in Variables Section
 # Change LoggingLevel to 3 an get more output in Powershell Windows
 
+<#
+This script takes a backup copy of an entire folder and puts it on a dedicated backup drive.
+It is recommended to use an external hard drive for this backup.
+To correctly use this script, be sure that you format each backup drive with the $BkupVolumeLabel keyword in the Volume Label.
+
+To run the script automatically:
+Schedule a task to run program powershell.exe with the argument:
+-executionpolicy Bypass -file "Desktop/backups.ps1"
+
+Schedule to run as often as you would like to make a backup.
+#>
+
+
 
 
 #Variables, only Change here
-$Destination = "E:\backups" #Copy the Files to this Location!!
+$Destination = "E:\backups" #Copy the Files to this Location
 
 $Versions = "3" #How many of the last Backups you want to keep
-$Backupdirs = "C:\Users" #What Folders you want to backup!!!
+$Backupdirs = "C:\Users" #What Folders you want to backup
 $ExcludeDirs = ($env:SystemDrive + "\Users\.*\AppData\Local"), "C:\Program Files (x86)\Common Files\Adobe" #This list of Directories will not be copied
 
-$logPath = "C:\temp\_backup" #!!!
+$logPath = "C:\temp\_backup"
 $LogfileName = "Log" #Log Name
 $LoggingLevel = "3" #LoggingLevel only for Output in Powershell Window, 1=smart, 3=Heavy
 
