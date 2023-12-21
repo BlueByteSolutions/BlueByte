@@ -1,21 +1,21 @@
-Team,Position,Name
-Executive Team,CEO,Martin Brody
-Executive Team,CFO,Larry Vaughn
-Executive Team,CTO,Matt Hooper
-Executive Team,COO,Quint Harding
-Sales Team,Sales Manager,Ellen Brody
-Sales Team,Marketing Specialist,Matt Hooper Jr.
-Sales Team,Account Executive,Harry Meadows
-Sales Team,Social Media Coordinator,Chrissie Watkins
-Research & Development,R&D Manager,Edward Elkins
-Research & Development,Software Engineer,Tim Brody
-Research & Development,Data Scientist,Sean Brody
-Research & Development,UX/UI Designer,Tina Wilcox
-IT,IT Director,Leonard Hendricks
-IT,Network Administrator,Larry Vaughn Jr.
-IT,Cybersecurity Specialist,Carl Gottlieb
-IT,System Administrator,Josh Mills
-Human Resources,HR Manager,Lorraine Kitner
-Human Resources,Recruitment Specialist,Sarah Thompson
-Human Resources,Employee Relations Specialist,Robert Kintner
-Human Resources,Training Coordinator,Amanda Mills
+Team,Position,Name,Department,Title
+Executive Team,CEO,Martin Brody,Executive,Chief Executive Officer
+Executive Team,CFO,Larry Vaughn,Executive,Chief Financial Officer
+Executive Team,CTO,Matt Hooper,Executive,Chief Technology Officer
+Executive Team,COO,Quint Harding,Executive,Chief Operating Officer
+Sales Team,Sales Manager,Ellen Brody,Sales,Sales Manager
+Sales Team,Marketing Specialist,Matt Hooper Jr.,Sales,Marketing Specialist
+Sales Team,Account Executive,Harry Meadows,Sales,Account Executive
+Sales Team,Social Media Coordinator,Chrissie Watkins,Sales,Social Media Coordinator
+Research & Development,R&D Manager,Edward Elkins,R&D,Research & Development Manager
+Research & Development,Software Engineer,Tim Brody,R&D,Software Engineer
+Research & Development,Data Scientist,Sean Brody,R&D,Data Scientist
+Research & Development,UX/UI Designer,Tina Wilcox,R&D,UX/UI Designer
+IT,IT Director,Leonard Hendricks,IT,IT Director
+IT,Network Administrator,Larry Vaughn Jr.,IT,Network Administrator
+IT,Cybersecurity Specialist,Carl Gottlieb,IT,Cybersecurity Specialist
+IT,System Administrator,Josh Mills,IT,System Administrator
+Human Resources,HR Manager,Lorraine Kitner,HR,HR Manager
+Human Resources,Recruitment Specialist,Sarah Thompson,HR,Recruitment Specialist
+Human Resources,Employee Relations Specialist,Robert Kintner,HR,Employee Relations Specialist
+Human Resources,Training Coordinator,Amanda Mills,HR,Training Coordinator

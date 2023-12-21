@@ -1,4 +1,4 @@
-# Script Name:                  ouUserCSV.ps1
+# Script Name:                  addressing.ps1
 # Author:                       Michael Sineiro
 # Date of latest revision:      12/18/2023
 # Purpose:                      creates new ou's and fills them w/ predifined names and users
@@ -29,8 +29,7 @@ function Create-User {
         [string]$position,
         [string]$name,
         [string]$department,
-        [string]$title,
-        [string]$manager
+        [string]$title
     )
 
     try {
@@ -52,7 +51,6 @@ function Create-User {
             ChangePasswordAtLogon = $true
             Department      = $department
             Title           = $title
-            Manager         = $manager
         }
 
         New-ADUser @userParams -ErrorAction Stop
@@ -72,5 +70,5 @@ foreach ($ou in ($csvData | Select-Object -Property Team -Unique)) {
 
 # Create Users
 foreach ($user in $csvData) {
-    Create-User -ouName $user.Team -position $user.Position -name $user.Name -department $user.Department -title $user.Title -manager $user.Manager
+    Create-User -ouName $user.Team -position $user.Position -name $user.Name -department $user.Department -title $user.Title
 }
