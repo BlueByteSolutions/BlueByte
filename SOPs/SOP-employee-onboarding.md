@@ -8,7 +8,8 @@
 
 ## Responsibilities:
 IT Department 
-  - Responsible for creating user accounts. adding the employee to the appropriate Organizational Unit. 
+  - Responsible for creating user accounts. adding the employee to the appropriate Organizational Unit.
+    
 HR Department
   - Responsible for collecting and verifying the information of a new employee, and requesting the configuration of new accounts by the IT department.
 
@@ -18,6 +19,7 @@ Managers/Supervisors
 ## Prerequisites:
 - Ensure the necessary hardware and software has been procured.
 - The new employee has been informed about the company IT policies and procedures.
+- The new employee should undergo training for correct computer use and network safety.
 
 ## Procedures:
 Overview: Ensuring new employees have the necessary equipment and email configuration required for daily tasks and communication. 
@@ -34,20 +36,9 @@ Computer Setup:
   - Create a non-administrator profile for new employees.
   - Allow RDP access for employees that need to be able to remotely access computers while traveling.
 
-Email Setup:
-  - Set up the account:
-    - On both Linux and Windows, create an [Outlook](outlook.com) email address.
-    - Download the email client [Thunderbird](https://www.thunderbird.net/en-US/download/?downloaded=True&download_channel=esr).
-    - To set up an existing email address, input the appropriate name, email and password.
-    - Select the most appropriate configuration (IMAP recommended), and complete the setup by selecting 'Done'. 
-   
-  - Email Signature Setup:
-    - Assist the new employee in creating a professional email signature, including name, position, contact information, and any other relevant information.
-    - Conduct a brief test to ensure the new employee can send and receive emails.  
 
 ##  References: 
-- [ChatGPT](https://chat.openai.com/share/52ba4d5c-b97f-4dab-a2bf-c81ce844abda)
 - [Code Fellows Sample SOP - 201d14 Lab 09](https://codefellows.github.io/ops-201-guide/curriculum/class-09/lab/SOP-new-employee.html)
 
 ## Revision History
-- Version 1.0 (2023.11.14): Initial document creation. Krystal Reid
+- Version 1.0 (2023.12.18): Initial document creation. Krystal Reid
