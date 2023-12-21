@@ -1,8 +1,7 @@
 # Script Name:                  addressing.ps1
 # Author:                       Michael Sineiro
 # Date of latest revision:      12/18/2023
-# Purpose:                      creates new domain and forest.
-#########                       adds active directory, DNS and server backup services.
+# Purpose:                     creates new domain and forest
 
 Add-WindowsFeature RSAT-AD-PowerShell
 
