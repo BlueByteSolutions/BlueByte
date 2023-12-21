@@ -1,9 +1,7 @@
-# Script Name:                  addressing.ps1
+# Script Name:                  ouUserCSV.ps1
 # Author:                       Michael Sineiro
 # Date of latest revision:      12/18/2023
 # Purpose:                      creates new ou's and fills them w/ predifined names and users
-
-
 
 Add-WindowsFeature RSAT-AD-PowerShell
 # Import the Active Directory module
@@ -29,7 +27,10 @@ function Create-User {
     param (
         [string]$ouName,
         [string]$position,
-        [string]$name
+        [string]$name,
+        [string]$department,
+        [string]$title,
+        [string]$manager
     )
 
     try {
@@ -49,6 +50,9 @@ function Create-User {
             Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
             AccountPassword = $password
             ChangePasswordAtLogon = $true
+            Department      = $department
+            Title           = $title
+            Manager         = $manager
         }
 
         New-ADUser @userParams -ErrorAction Stop
@@ -68,5 +72,5 @@ foreach ($ou in ($csvData | Select-Object -Property Team -Unique)) {
 
 # Create Users
 foreach ($user in $csvData) {
-    Create-User -ouName $user.Team -position $user.Position -name $user.Name
+    Create-User -ouName $user.Team -position $user.Position -name $user.Name -department $user.Department -title $user.Title -manager $user.Manager
 }
