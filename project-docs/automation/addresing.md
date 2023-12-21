@@ -1,6 +1,7 @@
 # Validate IP Address Format:
     Validate-IPAddress takes a string parameter representing an IP address.
-    It checks whether the provided string is a valid IP address format. If not, it displays an error message in red and exits the script.
+    It checks whether the provided string is a valid IP address format. 
+    If not, it displays an error message in red and exits the script.
 
 # Error Handling Function:
     Handle-Error takes a string parameter representing an error message.

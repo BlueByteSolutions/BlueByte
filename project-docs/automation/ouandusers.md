@@ -1,5 +1,6 @@
 # Install RSAT-AD-PowerShell Feature:
-    Uses the Add-WindowsFeature cmdlet to install the Remote Server Administration Tools (RSAT) feature for Active Directory PowerShell.
+    Uses the Add-WindowsFeature cmdlet to install the Remote Server Administration Tools
+    (RSAT) feature for Active Directory PowerShell.
 
 # Import Active Directory Module:
     Imports the Active Directory module using Import-Module ActiveDirectory.

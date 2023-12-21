@@ -14,7 +14,8 @@
 
 # Promote to Domain Controller and Configure Active Directory Forest:
     Uses the Install-ADDSForest cmdlet to promote the server to a domain controller and configure the Active Directory Forest.
-    Configures the domain name, domain mode, forest mode, NetBIOS name, DNS installation, and enforces the operation with the force option.
+    Configures the domain name, domain mode, forest mode, NetBIOS name, DNS installation, 
+    and enforces the operation with the force option.
 
 # Restart the Server:
     Uses the Restart-Computer cmdlet to forcefully restart the server, completing the installation process.
