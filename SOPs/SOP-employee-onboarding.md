@@ -1,15 +1,14 @@
 # Standard Operating Procedure: New Employee Onboarding 
 
 ## Purpose:
-- This document’s purpose is to outline the process and responsibilities of configuring a new employee’s computer and email.
+- This document’s purpose is to outline how the network account needs of a new employee will be met. The policy aims to streamline the process of account cretion, device setup, network access, and security training. 
 
 ## Scope:
-- This SOP applies to all employees undergoing the onboarding process within the organization that requires a computer that is well-configured for work-related purposes.
+- This SOP applies to all employees undergoing the onboarding process and covers the entire onboarding process within the IT infrastructure. It includes but is not limited to account provisioning, device configuration, and network access.
 
 ## Responsibilities:
 IT Department 
-  - Responsible for procuring the required hardware and software, setting up email accounts and ensuring proper configuration to software, and providing basic training on technology uses and security protocols.
-
+  - Responsible for creating user accounts. adding the employee to the appropriate Organizational Unit. 
 HR Department
   - Responsible for collecting and verifying the information of a new employee, and requesting the configuration of new accounts by the IT department.
 

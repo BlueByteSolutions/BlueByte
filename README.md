@@ -1,4 +1,6 @@
-![image](https://github.com/BlueByteSolutions/BlueByte/assets/147365506/731fcbed-cbd6-416c-93e1-66f462511cee)
+
+![image](https://github.com/BlueByteSolutions/BlueByte/assets/147365506/ba7a1a36-671a-442b-9a6c-2aaa2d8e8df0)
+
 
 
 # BlueByte Solutions
