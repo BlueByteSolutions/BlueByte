@@ -1,67 +1,72 @@
-# Script Name: addressing.ps1
-# Author: Michael Sineiro
-# Date of latest revision: 12/18/2023
-# Purpose: Set static IP, DNS, gateway, and server name.
+# Script Name:                  addressing.ps1
+# Author:                       Michael Sineiro
+# Date of latest revision:      12/18/2023
+# Purpose:                      creates new ou's and fills them w/ predifined names and users
 
-# Function to validate IP address format
-function Validate-IPAddress {
+
+
+Add-WindowsFeature RSAT-AD-PowerShell
+# Import the Active Directory module
+Import-Module ActiveDirectory
+
+# Function to create an Organizational Unit
+function Create-OU {
     param (
-        [string]$IPAddress
+        [string]$ouName
     )
 
-    if (-not ($IPAddress -as [ipaddress])) {
-        Write-Host "Invalid IP address format. Please enter a valid address." -ForegroundColor Red
-        exit
+    try {
+        # Create the specified Organizational Unit
+        New-ADOrganizationalUnit -Name $ouName -Path "DC=corp,DC=BlueByte,DC=com" -ErrorAction Stop
+        Write-Host "Organizational Unit '$ouName' created successfully." -ForegroundColor Green
+    } catch {
+        Write-Host "Error creating Organizational Unit: $_" -ForegroundColor Red
     }
 }
 
-# Function for error handling
-function Handle-Error {
+# Function to create a User
+function Create-User {
     param (
-        [string]$ErrorMessage
+        [string]$ouName,
+        [string]$position,
+        [string]$name
     )
 
-    Write-Host "Error: $ErrorMessage" -ForegroundColor Red
-    exit
+    try {
+        $firstName, $lastName = $name -split ' ', 2
+        $username = "$($firstName[0].ToString().ToLower()).$($lastName.ToLower())" -replace "[^\w\d]"
+        $displayName = "$firstName $lastName" -replace "[^\w\d]"
+        $password = ConvertTo-SecureString -String "Strongpass1" -AsPlainText -Force
+
+        $userParams = @{
+            SamAccountName  = $username
+            GivenName       = $firstName
+            Surname         = $lastName
+            UserPrincipalName = "$username@corp.BlueByte.com"
+            Name            = $displayName
+            DisplayName     = $displayName
+            Enabled         = $true
+            Path            = "OU=$ouName,DC=corp,DC=BlueByte,DC=com"
+            AccountPassword = $password
+            ChangePasswordAtLogon = $true
+        }
+
+        New-ADUser @userParams -ErrorAction Stop
+        Write-Host "User '$username' created successfully." -ForegroundColor Green
+    } catch {
+        Write-Host "Error creating user: $_" -ForegroundColor Red
+    }
 }
 
-# Prompt for static IPv4 Address
-$ipv4Address = Read-Host "Enter the static IPv4 address (e.g., 192.168.1.100)"
-Validate-IPAddress -IPAddress $ipv4Address
+# Read data from CSV file
+$csvData = Import-Csv -Path "C:\Users\Administrator\Desktop\comp-org.csv"
 
-# Prompt for DNS server
-$dnsServer = Read-Host "Enter the DNS server address (e.g., 8.8.8.8)"
-Validate-IPAddress -IPAddress $dnsServer
-
-# Prompt for default gateway
-$defaultGateway = Read-Host "Enter the default gateway address (e.g., 192.168.1.1)"
-Validate-IPAddress -IPAddress $defaultGateway
-
-# Prompt for new server name
-$newServerName = Read-Host "Enter the new server name"
-
-# Define the network interface alias
-$networkInterfaceAlias = "Ethernet"
-
-# Set static IPv4 address with error handling
-try {
-    New-NetIPAddress -InterfaceAlias $networkInterfaceAlias -IPAddress $ipv4Address -PrefixLength 24 -DefaultGateway $defaultGateway -ErrorAction Stop
-} catch {
-    Handle-Error -ErrorMessage $_.Exception.Message
+# Create OUs
+foreach ($ou in ($csvData | Select-Object -Property Team -Unique)) {
+    Create-OU -ouName $ou.Team
 }
 
-# Set DNS server with error handling
-try {
-    Set-DnsClientServerAddress -InterfaceAlias $networkInterfaceAlias -ServerAddresses $dnsServer -ErrorAction Stop
-} catch {
-    Handle-Error -ErrorMessage $_.Exception.Message
+# Create Users
+foreach ($user in $csvData) {
+    Create-User -ouName $user.Team -position $user.Position -name $user.Name
 }
-
-# Rename the Windows Server with error handling
-try {
-    Rename-Computer -NewName $newServerName -Force -Restart -ErrorAction Stop
-} catch {
-    Handle-Error -ErrorMessage $_.Exception.Message
-}
-
-Write-Host "Addressing configuration completed successfully." -ForegroundColor Green
