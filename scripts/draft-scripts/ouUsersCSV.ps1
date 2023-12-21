@@ -17,8 +17,13 @@ function Create-OU {
 
     try {
         # Create the specified Organizational Unit
-        New-ADOrganizationalUnit -Name $ouName -Path "DC=corp,DC=BlueByte,DC=com" -ErrorAction SilentlyContinue
+        $ou = New-ADOrganizationalUnit -Name $ouName -Path "DC=corp,DC=BlueByte,DC=com" -ErrorAction SilentlyContinue
         Write-Host "Organizational Unit '$ouName' created successfully." -ForegroundColor Green
+
+        # Create a group for the OU
+        $groupName = $ouName
+        New-ADGroup -Name $groupName -SamAccountName $groupName -GroupScope Global -Path $ou.DistinguishedName -ErrorAction SilentlyContinue
+        Write-Host "Group '$groupName' created successfully." -ForegroundColor Green
     } catch {
         # Log error to a file or another output stream if needed
         # Alternatively, you can choose to not display any error messages
@@ -56,8 +61,13 @@ function Create-User {
             Title                 = $title
         }
 
-        New-ADUser @userParams -ErrorAction SilentlyContinue
+        $user = New-ADUser @userParams -ErrorAction SilentlyContinue
         Write-Host "User '$username' created successfully." -ForegroundColor Green
+
+        # Add user to the group for the OU
+        $groupName = "$ouName Group"
+        Add-ADGroupMember -Identity $groupName -Members $user.SamAccountName -ErrorAction SilentlyContinue
+        Write-Host "User '$username' added to group '$groupName' successfully." -ForegroundColor Green
     } catch {
         # Log error to a file or another output stream if needed
         # Alternatively, you can choose to not display any error messages
@@ -67,7 +77,7 @@ function Create-User {
 # Read data from CSV file
 $csvData = Import-Csv -Path "C:\Users\Administrator\Desktop\comp-org.csv"
 
-# Create OUs
+# Create OUs and Groups
 foreach ($ou in ($csvData | Select-Object -Property Team -Unique)) {
     Create-OU -ouName $ou.Team
 }
