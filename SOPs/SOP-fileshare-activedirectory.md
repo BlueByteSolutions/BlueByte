@@ -13,7 +13,7 @@
 - Maintaining and Updating: IT Technicians
 
 ## Prerequisites:
-Windows Server configured with Active Directory.
+- Windows Server configured with Active Directory.
 
 ## Procedures:
 
