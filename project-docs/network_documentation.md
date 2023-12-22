@@ -1,4 +1,5 @@
-# AWS Windows Server 2019 on Seperate LAN
+# AWS Windows Server 2019 on Seperate LAN 
+we chose to use a Amazon web Service for the Virtual private cloud and EC2 instance. These two options enable us to spin up a windows server online with a connection on the cloud attached. The cloud allows the Windows server to connect anywhere in the world through a virtual private network that is tunneled to our pfsense route. Below is the configurations for the Virtual Private Cloud, the Virtual Private network, and the EC2 instance (Windows Server) 
 ## VPC
 - IPv4 CIDR: 10.0.0.0/16
 ### subnets: 
@@ -40,13 +41,14 @@
 
 
 ---
-# Endpoints 
+# Endpoints
+Our endpoints are configured according to the departments Sales and Marketing, Research and Development, and Future Expansion. Each endpoint is has a Windows 10 Operating system to communicate with the Windows server. The router for choice is pfsense. The pfsense has a vpn tunneling capability to allow communication from the server to the endpoints. We set up the endpoints to each connect to different network adapters to signify different Virtual Networks in each department. Below is the configuration for the machines.
 ## Virtual Box
 ### pfsense
 - Network adapter1: BridgedAdapter, eno1
 - Network adapter2: Internal Network, SandM (VLAN 20)
-- Network adapter1: BridgedAdapter, RandD (VLAN 30)
-- Network adapter1: BridgedAdapter, FE (VLAN 40)
+- Network adapter1: Internal Network, RandD (VLAN 30)
+- Network adapter1: Internal Network, FE (VLAN 40)
 ### Windows 10 endpoint(Sales and Marketing)
 - Processor: 1
 - Network adapter: Internal Network, SandM
@@ -102,6 +104,7 @@
 - subent pool: 172.16.40.50 - 172.16.40.200
 
 ## Firewall - Rules
+Firewalls provide the security division between the networks so there is no communication between machines in different departments while still allowing communcication between the server and endpoints. Below is the firewall configurations.
 ### SALESANDMARKETING 
 - 4 rules(5 if antilockout rule is counted)
 #### rule 1 
