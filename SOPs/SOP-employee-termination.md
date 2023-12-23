@@ -1,4 +1,4 @@
-# Standard Operating Procedure: Offboarding an Employee
+# Standard Operating Procedure: Employee Termination
 
 ## Purpose:
 - This document's purpose is to outline the standaradized process of offboarding an employee while adhering to company policy.
@@ -31,4 +31,4 @@ Overview: Ensuring that all employees have a standardized process of leaving the
 - [Employee Onboarding SOP](sop-employeeonboarding.md)
 
 ## Revision History:
-- Version 1.0 (2023.11.15) Initial document creation. Krystal Reid
+- Version 1.0 (2023.12.18) Initial document creation. Krystal Reid
