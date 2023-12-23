@@ -28,7 +28,6 @@ Overview: Ensuring that all employees have a standardized process of leaving the
 
 ## References:
 - [ChatGPT](https://chat.openai.com/share/9ab78f12-01c7-461c-9b38-acf9476811be)
-- [Employee Onboarding SOP](sop-employeeonboarding.md)
 
 ## Revision History:
 - Version 1.0 (2023.12.18) Initial document creation. Krystal Reid
