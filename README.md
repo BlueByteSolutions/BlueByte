@@ -23,7 +23,7 @@ The CEO of the company would like us to place an emphasis on a secure but effici
 - [Standard Operating Procedures (SOPs)](SOPs/)
 
 ## Presentation :cinema:
-- [BlueByte Solutions Live Presentation](https://zoom.us/rec/play/c5z6NTEU_lKGVgF-P5qYtQ7EeJPrj7Y_AxiAjP_8p5FmdhVxarZS9Jisko1XBe-yZtAdpACDGCk4-Rjr.6iI_pQMUCQLNo3bZ?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fzoom.us%2Frec%2Fshare%2Fw7neJuIsvPR3g_PAxkcQNuv3HVGb5WxtSkpRqSsBQ5gRfz6T3OAGQy-4ZfsI-3Ll.Fl_jk_jE9t7Avps2)
+- [BlueByte Solutions Live Presentation](https://zoom.us/rec/play/c5z6NTEU_lKGVgF-P5qYtQ7EeJPrj7Y_AxiAjP_8p5FmdhVxarZS9Jisko1XBe-yZtAdpACDGCk4-Rjr.6iI_pQMUCQLNo3bZ?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fzoom.us%2Frec%2Fshare%2Fw7neJuIsvPR3g_PAxkcQNuv3HVGb5WxtSkpRqSsBQ5gRfz6T3OAGQy-4ZfsI-3Ll.Fl_jk_jE9t7Avps2) - 00:35:13 to 00:53:41
 - [BlueByte Solutions Slide Deck]()
 
 ## Project Management
